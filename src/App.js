@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
+import Counter from './Counter';
+import store from './store/';
+import {Provider} from "react-redux";
+
 import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <p>I am On!</p>
-      </div>
+      <Provider store={store}>
+          <Counter />
+      </Provider>
     );
   }
 }
