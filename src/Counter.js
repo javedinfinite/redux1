@@ -1,5 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
+import Actions from './actionTypeConstants';
+
 // connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options]) — Creates a higher-order component for making container components out of base React components
 
 
@@ -7,7 +9,7 @@ import {connect} from "react-redux";
 function Counter(props){
   return(
     <div>
-    <h1>I am a Counter on master awscreater!</h1>
+    <h1>I am a Counter on master</h1>
     <p>Count : {props.count}</p>
     <button onClick={props.onIncrementClick}>Increment</button>
     <button onClick={props.onDecrementtClick}>Decrement</button>
@@ -29,11 +31,11 @@ function mapDispatchToProps(dispatch){
   console.log('mapDispatchToProps ');
   return{
     onIncrementClick: () => {
-      const action = { type: 'Increment'};
+      const action = { type: Actions.INCREMENT_REQUESTED};
       dispatch(action);
     },
     onDecrementtClick: () => {
-      const action = { type: 'Decrement'};
+      const action = { type: Actions.DECREMENT_REQUESTED};
       dispatch(action);
     }
   }
