@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 function Counter(props){
   return(
     <div>
-    <h1>I am a Counter!</h1>
+    <h1>I am a Counter on master awscreater!</h1>
     <p>Count : {props.count}</p>
     <button onClick={props.onIncrementClick}>Increment</button>
     <button onClick={props.onDecrementtClick}>Decrement</button>
