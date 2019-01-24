@@ -6,37 +6,44 @@ import Actions from './actionTypeConstants';
 
 
 
-function Counter(props){
+function Counter(AllProps){
+  // Here AllProps is an argument which is receiving all props provided by connect method and also props given by user at the time of using the componentDidMount = () => {
+  // Now if a prop is given same name in case of connect's (mapStateToProps or mapDispatchToProps) and in case of props from where component is used itself
+  // Then connect prop will be given priority  
+  
   return(
     <div>
     <h1>I am a Counter on master</h1>
-    <p>Count : {props.count}</p>
-    <button onClick={props.onIncrementClick}>Increment</button>
-    <button onClick={props.onDecrementtClick}>Decrement</button>
+    <p>Count : {AllProps.count}</p>
+    <button onClick={AllProps.onIncrementClick}>Increment</button>
+    <button onClick={AllProps.onDecrementtClick}>Decrement</button>
 
     </div>
   )
 }
 
 //This function will provide state to props of components
-function mapStateToProps(state){
-  console.log("mapStateToProps",state);
+//Here StoreStates is an argument which is receiving all store states provided by connect method
+function mapStateToProps(StoreStates){
+  console.log("mapStateToProps",StoreStates);
   return{
-    count: state.count
+    count: StoreStates.count //Here we are using the count state from store and returning the same value as count object
   }
 }
 
 //this function will provide info to the store with the action taken from view(by components), so that store can change corresponding states itself accordingly
-function mapDispatchToProps(dispatch){
+//Here StoreDispatch is an argument which is receiving a method called 'dispatch' which is a part of store class
+//This dispatch method takes an action as argumnt and passes to the store
+function mapDispatchToProps(StoreDispatch){
   console.log('mapDispatchToProps ');
   return{
     onIncrementClick: () => {
       const action = { type: Actions.INCREMENT_REQUESTED};
-      dispatch(action);
+      StoreDispatch(action);
     },
     onDecrementtClick: () => {
       const action = { type: Actions.DECREMENT_REQUESTED};
-      dispatch(action);
+      StoreDispatch(action);
     }
   }
 }
