@@ -24,6 +24,7 @@ function Counter(AllProps){
 
 //This function will provide state to props of components
 //Here StoreStates is an argument which is receiving all store states provided by connect method
+//When a change occurs, connect calls a function that we write called mapStateToProps(), and in mapStateToProps() we specify exactly which slice of the state we want to provide to our component. Here, we want to provide state.count, and allow our component to have access to them through a prop called count
 function mapStateToProps(StoreStates){
   console.log("mapStateToProps",StoreStates);
   return{
@@ -36,8 +37,9 @@ function mapStateToProps(StoreStates){
 //This dispatch method takes an action as argumnt and passes to the store
 function mapDispatchToProps(StoreDispatch){
   console.log('mapDispatchToProps ');
-  return{
-    onIncrementClick: () => {
+  return{//we are returning object literal { onIncrementClick: value, onDecrementtClick: otherValue };
+  //':' assigns a function as a property of an object literal. 
+  onIncrementClick: () => {
       const action = { type: Actions.INCREMENT_REQUESTED};
       StoreDispatch(action);
     },
